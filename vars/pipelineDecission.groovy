@@ -8,7 +8,7 @@ def decidePipeline(Map configMap){
             // nodeJSVMCI(configMap)
             echo "application is NOdejs and VM based"
         break
-        case 'JavaVM'
+        case 'javaVM'
             javaVMCI(configMap)
         break
         default:
