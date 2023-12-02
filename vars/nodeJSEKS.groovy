@@ -77,7 +77,7 @@ def call(Map configMap){
                     }
                 }
             }
-
+            // just make sure the we should login inside agent
             stage('Docker Push') {
                 steps {
                     script{
@@ -87,7 +87,18 @@ def call(Map configMap){
                     }
                 }
             }
-            // just make sure the we should login inside agent
+            
+            stage('EKS Deploy') {
+                steps {
+                    script{
+                        sh """
+                            cd helm
+                            sed -i 's/IMAGE_VERSION/$packageVersion/g' values.yaml
+                            helm install ${component} .
+                        """
+                    }
+                }
+            }
             //here I need to configure downstram job. I have to pass package version for deployment
             // This job will wait until downstrem job is over
             // stage('Deploy') {
