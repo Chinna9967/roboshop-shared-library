@@ -82,7 +82,7 @@ def call(Map configMap){
                 steps {
                     script{
                         sh """
-                            docker push chinna9967/${component}:${packageVersion} .
+                            docker push chinna9967/${component}:${packageVersion}
                         """
                     }
                 }
