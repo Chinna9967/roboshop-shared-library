@@ -62,7 +62,7 @@ def call(Map configMap){
                     nexusArtifactUploader(
                         nexusVersion: 'nexus3',
                         protocol: 'http',
-                        nexusUrl: '172.31.86.20:8081/',
+                        nexusUrl: '52.205.110.8:8081/',
                         groupId: "${pomMap.groupId}",
                         version: "${pomMap.version}",
                         repository: "${component}",
