@@ -81,7 +81,7 @@ def call(Map configMap){
                 steps {
                     script{
                         sh """
-                            docker build -t joindevops/${component}:${packageVersion} .
+                            docker build -t chinna9967/${component}:${packageVersion} .
                         """
                     }
                 }
@@ -98,11 +98,11 @@ def call(Map configMap){
                         echo "username is $USERNAME"
                         sh """
                             docker login -u $USERNAME -p $PASSWORD
-                            docker push joindevops/${component}:${packageVersion}
+                            docker push chinna9967/${component}:${packageVersion}
                         """
                     }
                         // sh """
-                        //     docker push joindevops/${component}:${packageVersion}
+                        //     docker push chinna9967/${component}:${packageVersion}
                         // """
                     }
                 }
@@ -113,7 +113,7 @@ def call(Map configMap){
                     script{
                         sh """
                         aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com
-                        docker tag joindevops/${component}:${packageVersion} ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${component}:${packageVersion}
+                        docker tag chinna9967/${component}:${packageVersion} ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${component}:${packageVersion}
                         docker push ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${component}:${packageVersion}
                         """
                     }
