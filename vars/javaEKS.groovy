@@ -87,26 +87,26 @@ def call(Map configMap){
                 }
             }
         //just make sure you login inside agent
-            stage('Docker Push') {
-                steps {
-                    script{
-                    withCredentials([usernamePassword(credentialsId: 'docker-auth', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        // available as an env variable, but will be masked if you try to print it out any which way
-                        // note: single quotes prevent Groovy interpolation; expansion is by Bourne Shell, which is what you want
-                        // also available as a Groovy variable
-                        // or inside double quotes for string interpolation
-                        echo "username is $USERNAME"
-                        sh """
-                            docker login -u $USERNAME -p $PASSWORD
-                            docker push chinna9967/${component}:${packageVersion}
-                        """
-                    }
-                        // sh """
-                        //     docker push chinna9967/${component}:${packageVersion}
-                        // """
-                    }
-                }
-            }
+            // stage('Docker Push') {
+            //     steps {
+            //         script{
+            //         withCredentials([usernamePassword(credentialsId: 'docker-auth', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            //             // available as an env variable, but will be masked if you try to print it out any which way
+            //             // note: single quotes prevent Groovy interpolation; expansion is by Bourne Shell, which is what you want
+            //             // also available as a Groovy variable
+            //             // or inside double quotes for string interpolation
+            //             echo "username is $USERNAME"
+            //             sh """
+            //                 docker login -u $USERNAME -p $PASSWORD
+            //                 docker push chinna9967/${component}:${packageVersion}
+            //             """
+            //         }
+            //             // sh """
+            //             //     docker push chinna9967/${component}:${packageVersion}
+            //             // """
+            //         }
+            //     }
+            // }
 
             stage('ECR Push'){
                 steps{
